@@ -64,12 +64,13 @@ class _DetilesCatigoresState extends State<DetilesCatigores> {
           final product = ecomercyModel!.products[index];
           return ListTile(
             leading: Image.network(product.thumbnail),
-            title: Text(product.title),
-            subtitle: Text(product.description),
-            trailing: Text("\$${product.price}"),
+            title: Text(product.title,style: TextStyle(color: Colors.black,fontSize: 20),),
+            subtitle: Text(product.description,style: TextStyle(color: Colors.grey,fontSize: 10),),
+            trailing: Text("\$${product.price}",style: TextStyle(color: Colors.green,fontSize: 20),),
           );
         },
       ),
     );
   }
 }
+

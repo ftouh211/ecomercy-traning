@@ -1,8 +1,6 @@
-import 'package:ecomercy/about_us.dart';
 import 'package:ecomercy/basic.dart';
 import 'package:ecomercy/profiel.dart';
 import 'package:ecomercy/catigories.dart';
-import 'package:ecomercy/team.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -52,3 +50,4 @@ List<Widget> tabs = [
   Profiel(),
   CatigoriesPage()
 ];
+

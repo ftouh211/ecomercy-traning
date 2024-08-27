@@ -24,8 +24,7 @@ class _BasicState extends State<Basic> {
         automaticallyImplyLeading: false,
         toolbarHeight: 100,
         backgroundColor: Colors.transparent,
-        // centerTitle: true,
-        // leading: ,
+
         title: const Text(
           "Product List",
           style: TextStyle(
@@ -75,7 +74,6 @@ class _BasicState extends State<Basic> {
             itemBuilder: (context, index) {
               return GestureDetector(
                 onTap: () {
-                  // Navigate to ProductDetiels page when the card is tapped
                   Navigator.push(
                     context,
                     MaterialPageRoute(

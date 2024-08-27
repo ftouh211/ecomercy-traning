@@ -1,4 +1,3 @@
-import 'package:ecomercy/home_screen.dart';
 import 'package:ecomercy/log_in_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:introduction_screen/introduction_screen.dart';

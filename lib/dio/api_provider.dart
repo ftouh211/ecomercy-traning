@@ -2,12 +2,11 @@
 
 import 'package:dio/dio.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:ecomercy/dio/models/productis_model.dart'; // Adjust import according to your directory structure
+import 'package:ecomercy/dio/models/productis_model.dart';
 
 class ApiProvider {
   final String baseUrl = 'https://dummyjson.com';
 
-  // Method to fetch products
   Future<Ecomercy?> getProducts() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     try {
@@ -15,14 +14,7 @@ class ApiProvider {
       Response response = await Dio().get(
         "$baseUrl/products",
 
-        // queryParameters: {
-        //   "select": "id,title,description,category,price,thumbnail"
-        // },
-        // options: Options(
-        //     headers: {
-        //       "Authorization": "Bearer ${prefs.getString("userToken") ?? ''}"
-        //     }
-        // ),
+
       );
 
       if (response.statusCode == 200) {
@@ -35,26 +27,16 @@ class ApiProvider {
       if(e is DioException){
         print(e.response?.data);
       }
-      // print("Error: $e");
       return null;
     }
   }
 
-  // Method to fetch products by category
   Future<Ecomercy?> getProductsByCategory(String category) async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     try {
       Response response = await Dio().get(
-        "$baseUrl/products",
-        // queryParameters: {
-        //   "category": category, // Filter by category
-        //   "select": "id,title,description,category,price,thumbnail"
-        // },
-        // options: Options(
-        //     headers: {
-        //       "Authorization": "Bearer ${prefs.getString("userToken") ?? ''}"
-        //     }
-        // ),
+        "$baseUrl/products/category/$category",
+
       );
 
       if (response.statusCode == 200) {
@@ -69,7 +51,6 @@ class ApiProvider {
     }
   }
 
-  // Method to fetch categories
   Future<List<dynamic>?> getCategories() async {
     try {
       Response response = await Dio().get("$baseUrl/products/category-list");

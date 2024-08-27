@@ -9,7 +9,7 @@ class AboutUs extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("About As",style: TextStyle(fontSize: 26,fontWeight: FontWeight.w700),),
+        title: Text("About Us",style: TextStyle(fontSize: 26,fontWeight: FontWeight.w700),),
       ),
       body: Padding(
         padding: const EdgeInsets.all(12.0),
