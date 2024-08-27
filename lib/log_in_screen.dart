@@ -1,5 +1,134 @@
-import 'package:ecomercy/sign_up.dart';
+// import 'package:ecomercy/firebase_function.dart';
+// import 'package:ecomercy/sign_up.dart';
+// import 'package:flutter/material.dart';
+//
+// class LoginScreen extends StatefulWidget {
+//   static const String routeName = "login";
+//   LoginScreen({super.key});
+//
+//   @override
+//   State<LoginScreen> createState() => _LoginScreenState();
+// }
+//
+// class _LoginScreenState extends State<LoginScreen> {
+//   bool isPasswordVisible = false;
+//   TextEditingController emailController = TextEditingController();
+//   TextEditingController passwordController = TextEditingController();
+//
+//   var formKey = GlobalKey<FormState>();
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return SafeArea(
+//       child: Scaffold(
+//         backgroundColor: Color(0xffF8F8F8),
+//
+//         body: Center(
+//           child: SingleChildScrollView(
+//             padding: EdgeInsets.all(30.0),
+//             child: Container(
+//               // color: Colors.yellow,
+//               // padding: EdgeInsets.all(16.0),
+//               child: Form(
+//                 key: formKey,
+//
+//                 child: Column(
+//                   children: [
+//                     Text("WELCOME !",style: TextStyle(fontSize: 35),),
+//                     SizedBox(height: 40,),
+//                     TextFormField(
+//                       keyboardType: TextInputType.emailAddress,
+//                       controller: emailController,
+//                       validator: (value) {
+//                         if (value == null || value.isEmpty) {
+//                           return 'Please enter your email';
+//                         }
+//                         if (!RegExp(r'^[^@]+@[^@]+\.[^@]+').hasMatch(value)) {
+//                           return 'Please enter a valid email address';
+//                         }
+//                         return null;
+//                       },
+//                       decoration: InputDecoration(
+//                           labelText: "Email or Phone",
+//                           labelStyle: TextStyle(color: Colors.black)
+//                         // prefixIcon: Icon(Icons.email),
+//                         // border: OutlineInputBorder(),
+//                       ),
+//                     ),
+//                     SizedBox(height: 20),
+//                     TextFormField(
+//                       keyboardType: TextInputType.visiblePassword,
+//                       controller: passwordController,
+//                       obscureText: !isPasswordVisible,
+//                       validator: (value) {
+//                         if (value == null || value.isEmpty) {
+//                           return 'Please enter your password';
+//                         }
+//                         return null;
+//                       },
+//                       decoration: InputDecoration(
+//                         labelText: "Password",
+//                         labelStyle: TextStyle(color: Colors.black),
+//                         // prefixIcon: Icon(Icons.lock),
+//                         suffixIcon: IconButton(
+//                           icon: Icon(
+//                             isPasswordVisible
+//                                 ? Icons.visibility
+//                                 : Icons.visibility_off,
+//                           ),
+//                           onPressed: () {
+//                             setState(() {
+//                               isPasswordVisible = !isPasswordVisible;
+//                             });
+//                           },
+//                         ),
+//                         // border: OutlineInputBorder(),
+//                       ),
+//                     ),
+//                     SizedBox(height: 30),
+//                     Container(
+//                       color: Colors.blue,
+//                       width: double.infinity,
+//                       child: MaterialButton(
+//                         onPressed: () {
+//                           if (formKey.currentState?.validate() ?? false) {
+//                             print(emailController.text);
+//                             print(passwordController.text);
+//                           }
+//                         },
+//                         child: Text(
+//                           "Login",
+//                           style: TextStyle(color: Colors.white, fontSize: 20),
+//                         ),
+//                       ),
+//                     ),
+//                     SizedBox(height: 30),
+//                     Text("Don't have an account? ",style: TextStyle(color: Colors.black,fontSize: 20),),
+//                     SizedBox(height: 10),
+//
+//                     TextButton(
+//                       onPressed: () {
+//                         FirebaseFunctions.login(emailController.text, passwordController.text);
+//                         Navigator.pushNamed(context,SignUp.routeName );},
+//                       child: Text("Register",style: TextStyle(color: Colors.blue,fontSize: 15),),
+//                     ),
+//                   ],
+//                 ),
+//               ),
+//             ),
+//           ),
+//         ),
+//       ),
+//     );
+//   }
+// }
+
+
+
+import 'package:ecomercy/home_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:ecomercy/firebase_function.dart';
+import 'package:ecomercy/sign_up.dart';
 
 class LoginScreen extends StatefulWidget {
   static const String routeName = "login";
@@ -21,20 +150,16 @@ class _LoginScreenState extends State<LoginScreen> {
     return SafeArea(
       child: Scaffold(
         backgroundColor: Color(0xffF8F8F8),
-
         body: Center(
           child: SingleChildScrollView(
             padding: EdgeInsets.all(30.0),
             child: Container(
-              // color: Colors.yellow,
-              // padding: EdgeInsets.all(16.0),
               child: Form(
                 key: formKey,
-
                 child: Column(
                   children: [
-                    Text("WELCOME !",style: TextStyle(fontSize: 35),),
-                    SizedBox(height: 40,),
+                    Text("WELCOME !", style: TextStyle(fontSize: 35)),
+                    SizedBox(height: 40),
                     TextFormField(
                       keyboardType: TextInputType.emailAddress,
                       controller: emailController,
@@ -48,10 +173,9 @@ class _LoginScreenState extends State<LoginScreen> {
                         return null;
                       },
                       decoration: InputDecoration(
-                          labelText: "Email or Phone",
-                          labelStyle: TextStyle(color: Colors.black)
-                        // prefixIcon: Icon(Icons.email),
-                        // border: OutlineInputBorder(),
+                        labelText: "Email",
+                        labelStyle: TextStyle(color: Colors.black),
+                        prefixIcon: Icon(Icons.email),
                       ),
                     ),
                     SizedBox(height: 20),
@@ -68,7 +192,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       decoration: InputDecoration(
                         labelText: "Password",
                         labelStyle: TextStyle(color: Colors.black),
-                        // prefixIcon: Icon(Icons.lock),
+                        prefixIcon: Icon(Icons.lock),
                         suffixIcon: IconButton(
                           icon: Icon(
                             isPasswordVisible
@@ -81,7 +205,6 @@ class _LoginScreenState extends State<LoginScreen> {
                             });
                           },
                         ),
-                        // border: OutlineInputBorder(),
                       ),
                     ),
                     SizedBox(height: 30),
@@ -89,10 +212,19 @@ class _LoginScreenState extends State<LoginScreen> {
                       color: Colors.blue,
                       width: double.infinity,
                       child: MaterialButton(
-                        onPressed: () {
+                        onPressed: () async {
                           if (formKey.currentState?.validate() ?? false) {
-                            print(emailController.text);
-                            print(passwordController.text);
+                            bool success = await FirebaseFunctions.login(
+                              emailController.text,
+                              passwordController.text,
+                            );
+                            if (success) {
+                              Navigator.pushNamed(context, HomeScreen.routeName);
+                            } else {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(content: Text('Login failed.')),
+                              );
+                            }
                           }
                         },
                         child: Text(
@@ -102,12 +234,13 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                     ),
                     SizedBox(height: 30),
-                    Text("Don't have an account? ",style: TextStyle(color: Colors.black,fontSize: 20),),
+                    Text("Don't have an account? ", style: TextStyle(color: Colors.black, fontSize: 20)),
                     SizedBox(height: 10),
-
                     TextButton(
-                      onPressed: () {Navigator.pushNamed(context,SignUp.routeName );},
-                      child: Text("Register",style: TextStyle(color: Colors.blue,fontSize: 15),),
+                      onPressed: () {
+                        Navigator.pushNamed(context, SignUp.routeName);
+                      },
+                      child: Text("Register", style: TextStyle(color: Colors.blue, fontSize: 15)),
                     ),
                   ],
                 ),

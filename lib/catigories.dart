@@ -1,33 +1,156 @@
-import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+//
+// import 'package:flutter/material.dart';
+// import 'package:ecomercy/dio/api_provider.dart';
+// import 'detiles_catigores.dart';
+//
+// class CatigoriesPage extends StatefulWidget {
+//   static const String routeName = "CatigoriesPage";
+//   @override
+//   _CatigoriesPageState createState() => _CatigoriesPageState();
+// }
+//
+// class _CatigoriesPageState extends State<CatigoriesPage> {
+//   List<dynamic>? categories;
+//
+//   @override
+//   void initState() {
+//     super.initState();
+//     _fetchCategories();
+//   }
+//
+//   void _fetchCategories() async {
+//     final apiProvider = ApiProvider();
+//     final fetchedCategories = await apiProvider.getCategories();
+//     setState(() {
+//       categories = fetchedCategories;
+//     });
+//   }
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       backgroundColor: Colors.white,
+//       appBar: AppBar(
+//         backgroundColor: Colors.white,
+//         title: const Text(
+//           "Categories",
+//           style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+//         ),
+//       ),
+//       body: categories == null
+//           ? Center(child: CircularProgressIndicator())
+//           : ListView.builder(
+//         itemCount: categories!.length,
+//         itemBuilder: (context, index) {
+//           return ListTile(
+//             title: Text(categories![index]),
+//             onTap: () {
+//               Navigator.push(
+//                 context,
+//                 MaterialPageRoute(
+//                   builder: (context) => DetilesCatigores(
+//                     category: categories![index],
+//                   ),
+//                 ),
+//               );
+//             },
+//           );
+//         },
+//       ),
+//     );
+//   }
+// }
+//
+// import 'package:flutter/material.dart';
+// import 'package:ecomercy/dio/api_provider.dart';
+// import 'detiles_catigores.dart'; // Adjust import according to your directory structure
+//
+// class CatigoriesPage extends StatefulWidget {
+//   static const String routeName = "CatigoriesPage";
+//   @override
+//   _CatigoriesPageState createState() => _CatigoriesPageState();
+// }
+//
+// class _CatigoriesPageState extends State<CatigoriesPage> {
+//   List<dynamic>? categories;
+//
+//   @override
+//   void initState() {
+//     super.initState();
+//     _fetchCategories();
+//   }
+//
+//   void _fetchCategories() async {
+//     final apiProvider = ApiProvider();
+//     final fetchedCategories = await apiProvider.getCategories();
+//     setState(() {
+//       categories = fetchedCategories;
+//     });
+//   }
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       backgroundColor: Colors.white,
+//       appBar: AppBar(
+//         backgroundColor: Colors.white,
+//         title: const Text(
+//           "Categories",
+//           style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+//         ),
+//       ),
+//       body: categories == null
+//           ? Center(child: CircularProgressIndicator())
+//           : ListView.builder(
+//         itemCount: categories!.length,
+//         itemBuilder: (context, index) {
+//           return ListTile(
+//             title: Text(categories![index]),
+//             onTap: () {
+//               Navigator.push(
+//                 context,
+//                 MaterialPageRoute(
+//                   builder: (context) => DetilesCatigores(
+//                     category: categories![index],
+//                   ),
+//                 ),
+//               );
+//             },
+//           );
+//         },
+//       ),
+//     );
+//   }
+// }
 
-class SettingsPage extends StatefulWidget {
-  static const String routeName = "settings";
+
+import 'package:flutter/material.dart';
+import 'package:ecomercy/dio/api_provider.dart';
+import 'package:ecomercy/dio/models/productis_model.dart';
+import 'detiles_catigores.dart';
+
+class CatigoriesPage extends StatefulWidget {
+  static const String routeName = "CatigoriesPage";
+
   @override
-  _SettingsPageState createState() => _SettingsPageState();
+  _CatigoriesPageState createState() => _CatigoriesPageState();
 }
 
-class _SettingsPageState extends State<SettingsPage> {
-  bool _notificationsEnabled = false;
-  bool _darkMode = false;
+class _CatigoriesPageState extends State<CatigoriesPage> {
+  List<dynamic>? categories;
 
-  void _toggleNotifications(bool value) {
-    setState(() {
-      _notificationsEnabled = value;
-    });
+  @override
+  void initState() {
+    super.initState();
+    _fetchCategories();
   }
 
-  void _toggleDarkMode(bool value) {
+  Future<void> _fetchCategories() async {
+    final apiProvider = ApiProvider();
+    final fetchedCategories = await apiProvider.getCategories();
     setState(() {
-      _darkMode = value;
+      categories = fetchedCategories;
     });
-  }
-
-  void _saveSettings() {
-    // Implement the save functionality here
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text('Settings saved!')),
-    );
   }
 
   @override
@@ -35,107 +158,33 @@ class _SettingsPageState extends State<SettingsPage> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        automaticallyImplyLeading: false,
-
         backgroundColor: Colors.white,
-        // leading: IconButton(
-        //   icon: Icon(Icons.arrow_back),
-        //   onPressed: () {
-        //     //    Navigator.pushNamed(context => .routeName);
-        //   },
-        // ),
         title: const Text(
-          "Catigores",
+          "Categories",
           style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
         ),
       ),
-       body: //ListView(
-      //   padding: EdgeInsets.all(16.0),
-      //   children: [
-      //     Text("Genral Settings",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 25),),
-      //     SizedBox(height: 20,),
-      //
-      //     Padding(
-      //       padding: const EdgeInsets.symmetric(horizontal: 14.0),
-      //       child: Row(
-      //         children: [
-      //           Expanded(child: Text("Edit Profile",style: TextStyle(fontSize: 25),)),
-      //           IconButton(
-      //             icon: Icon(Icons.account_box),
-      //             onPressed: () {
-      //               //    Navigator.pushNamed(context => .routeName);
-      //             },
-      //           )  ],
-      //       ),
-      //     ),
-      //     SizedBox(height: 10,),
-      //     Padding(
-      //       padding: const EdgeInsets.symmetric(horizontal: 14.0),
-      //       child: Row(
-      //         children: [
-      //           Expanded(child: Text("Change Password",style: TextStyle(fontSize: 25),)),
-      //           IconButton(
-      //             icon: Icon(Icons.lock),
-      //             onPressed: () {
-      //               //    Navigator.pushNamed(context => .routeName);
-      //             },
-      //           )  ],
-      //       ),
-      //     ),
-      //     SizedBox(height: 10,),
-      //     Padding(
-      //       padding: const EdgeInsets.symmetric(horizontal: 14.0),
-      //       child: Row(
-      //         children: [
-      //           Expanded(child: Text("Favourites",style: TextStyle(fontSize: 25),)),
-      //           IconButton(
-      //             icon: Icon(Icons.favorite),
-      //             onPressed: () {
-      //               //    Navigator.pushNamed(context => .routeName);
-      //             },
-      //           )  ],
-      //       ),
-      //     ),
-      //
-      //     Padding(
-      //       padding: const EdgeInsets.only(top: 8.0),
-      //       child: SwitchListTile(
-      //
-      //         title: Text('Enable Notifications',style: TextStyle(fontSize: 20),),
-      //         value: _notificationsEnabled,
-      //         onChanged: _toggleNotifications,
-      //       ),
-      //     ),
-      //
-      //
-      //     SizedBox(height: 20),
-      //     SwitchListTile(
-      //       title: Text('Enable Dark Mode',style: TextStyle(fontSize: 20)),
-      //       value: _darkMode,
-      //       onChanged: _toggleDarkMode,
-      //     ),
-      //     SizedBox(height: 30),
-      //
-      //
-      //
-      //     //     TextFormField(
-      //     // decoration: InputDecoration(
-      //     // label: Text("Your Complaint"),
-      //     // border: OutlineInputBorder(
-      //     // borderRadius: BorderRadius.circular(18),
-      //     // ),
-      //     // enabledBorder: OutlineInputBorder(
-      //     // borderRadius: BorderRadius.circular(18))),
-      //     // ),
-      //
-      //     SizedBox(height: 35),
-      //
-      //     ElevatedButton(
-      //       onPressed: _saveSettings,
-      //       child: Text('Save Settings',style: TextStyle(color: Colors.black),),
-      //     ),
-      //   ],
-      // ),
+      body: categories == null
+          ? Center(child: CircularProgressIndicator())
+          : ListView.builder(
+        itemCount: categories!.length,
+        itemBuilder: (context, index) {
+          final category = categories![index];
+          return ListTile(
+            title: Text(category),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => DetilesCatigores(
+                    category: category,
+                  ),
+                ),
+              );
+            },
+          );
+        },
+      ),
     );
   }
 }

@@ -10,7 +10,7 @@ class IntroScreen extends StatelessWidget {
   final List<PageViewModel> pages = [
     PageViewModel(
         title: "First page",
-        body: "describtion",
+        body: "Comercy Program",
         image: Image.asset("assets/images/one.jpg"),
         decoration: PageDecoration(
             titleTextStyle:
@@ -28,7 +28,7 @@ class IntroScreen extends StatelessWidget {
             ))),
     PageViewModel(
         title: "Second page",
-        body: "describtion",
+        body: " Advanced analytics and reporting",
         image: Image.asset("assets/images/two.jpg"),
         decoration: PageDecoration(
             titleTextStyle:
@@ -46,7 +46,7 @@ class IntroScreen extends StatelessWidget {
             ))),
     PageViewModel(
         title: "third page",
-        body: "describtion",
+        body: "Secure and scalable infrastructure",
         image: Image.asset("assets/images/three.jpg"),
         decoration: PageDecoration(
             titleTextStyle:
